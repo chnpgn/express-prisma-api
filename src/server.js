@@ -10,6 +10,7 @@ connectDB(); // Connect to the database before starting the server
 const app = express();
 // ✅ Allow JSON bodies
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // ✅ Allow URL-encoded bodies
 
 app.use("/api/movies", movieRoutes);
 app.use("/api/auth", authRoutes);
