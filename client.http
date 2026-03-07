@@ -53,3 +53,15 @@ Content-Type: application/json
 
 ###
 POST http://{{host}}/api/auth/logout HTTP/1.1
+
+###
+POST http://{{host}}/api/watchlist HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFkNzJkMjllLWMxOGUtNDViZC04ODNjLTJjY2Y5ZjRkNDUwOCIsImlhdCI6MTc3MjkxNzUyOSwiZXhwIjoxNzczNTIyMzI5fQ.9VS_LwnSuHaQYZOA32a-uHuJlWVYLjjZKXrluSxcqZk
+
+{
+    "movieId": "5b0f4c4b-f6d0-47bd-b958-89d6d3a53bc3",
+    "status": "PLANNED",
+    "rating": 5,
+    "notes": "null"
+}

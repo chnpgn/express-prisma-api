@@ -8,27 +8,31 @@ datasource db {
 }
 
 model User {
-  id        String          @id @default(uuid())
+  id        String   @id @default(uuid())
   name      String
-  email     String          @unique
+  email     String   @unique
   password  String
-  createdAt DateTime        @default(now())
+  createdAt DateTime @default(now())
+
+  // Relations
   movies    Movie[]         @relation("MovieCreator")
   watchlist WatchlistItem[]
 }
 
 model Movie {
-  id          String          @id @default(uuid())
+  id          String   @id @default(uuid())
   title       String
   overview    String?
   releaseYear Int
-  genre       String[]        @default([])
+  genre       String[] @default([])
   runtime     Int?
   posterUrl   String?
   createdBy   String
-  createdAt   DateTime        @default(now())
-  creator     User            @relation("MovieCreator", fields: [createdBy], references: [id], onDelete: Cascade)
-  watchlist   WatchlistItem[]
+  createdAt   DateTime @default(now())
+
+  // Relations
+  creator   User            @relation("MovieCreator", fields: [createdBy], references: [id], onDelete: Cascade)
+  watchlist WatchlistItem[]
 }
 
 model WatchlistItem {
@@ -40,8 +44,12 @@ model WatchlistItem {
   notes     String?
   createdAt DateTime        @default(now())
   updatedAt DateTime        @updatedAt
-  movie     Movie           @relation(fields: [movieId], references: [id], onDelete: Cascade)
-  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Relations
+  movie Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, movieId])
 }
 
 enum WatchlistStatus {

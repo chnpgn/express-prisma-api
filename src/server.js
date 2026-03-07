@@ -1,6 +1,7 @@
 import express from "express";
 import movieRoutes from "./routes/movieRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import watchlistRoutes from "./routes/watchlistRoutes.js"
 import { config } from "dotenv";
 import { connectDB, disconnectDB } from "./config/db.js";
 
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true })); // ✅ Allow URL-encoded bodies
 
 app.use("/api/movies", movieRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/watchlist", watchlistRoutes)
 
 const PORT = process.env.PORT || 5001;
 
